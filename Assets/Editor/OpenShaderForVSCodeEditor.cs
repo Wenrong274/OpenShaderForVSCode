@@ -1,7 +1,8 @@
-using UnityEngine;
-using UnityEditor;
 using System;
+using System.Diagnostics;
 using System.IO;
+using UnityEditor;
+using UnityEngine;
 
 public class OpenShaderForVSCodeEditor
 {
@@ -10,8 +11,8 @@ public class OpenShaderForVSCodeEditor
     {
         string projectPath = Directory.GetParent(Application.dataPath).ToString();
         string strFilePath = AssetDatabase.GetAssetPath(EditorUtility.InstanceIDToObject(instanceID));
-        string strFileName = projectPath + "/" + strFilePath;
-        if (strFileName.EndsWith(".shader"))
+        string fileName = projectPath + "/" + strFilePath;
+        if (fileName.EndsWith(".shader"))
         {
             var envUser = Environment.GetEnvironmentVariables(EnvironmentVariableTarget.User);
             var envPaths = envUser["Path"].ToString().Split(";");
@@ -27,19 +28,19 @@ public class OpenShaderForVSCodeEditor
             }
             if (!string.IsNullOrEmpty(vscodePath))
             {
-                System.Diagnostics.Process process = new System.Diagnostics.Process();
-                System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-                startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                Process process = new Process();
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 startInfo.FileName = vscodePath;
                 ///vscode args "$(ProjectPath)" -g "$(File)":$(Line):$(Column)
-                startInfo.Arguments = $"{projectPath} -g {strFileName}";
+                startInfo.Arguments = $"{projectPath} -g {fileName}";
                 process.StartInfo = startInfo;
                 process.Start();
                 return true;
             }
             else
             {
-                Debug.Log("Not Found Enviroment Variable 'VSCode_Path'.");
+                UnityEngine.Debug.Log("Not Found Enviroment Variable 'VSCode_Path'.");
                 return false;
             }
         }
