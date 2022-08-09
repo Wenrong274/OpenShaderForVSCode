@@ -1,6 +1,6 @@
 ﻿# OpenShaderForVSCode
 
-真對 Unity Shader 檔案打開時，使用 VSCode 開啟而不是 Visual Studio，假如預設是 VSCode 則無需使用這功能。
+針對 Unity Shader 檔案打開時，使用 VSCode 開啟而不是 Visual Studio，假如預設是 VSCode 則無需使用這功能。
 
 會寫這功能是平常寫 C# 都是習慣使用 Visual Studio，而 Visual Studio 好像沒有針對 Unity Shaderlab 的關鍵字，而 VSCode 則有 [ShaderlabVSCode(Free)][shaderlab_vscode]，也因此這樣選擇使用 VSCode。
 
@@ -29,6 +29,8 @@ startInfo.Arguments = $"{projectPath} -g {fileName}";
 ```
 
 ### Script
+
+詳細的方法可以參考 [Sublime Text & Unity Shader][ref_1]。
 
 ``` C#
 public class OpenShaderForVSCodeEditor
