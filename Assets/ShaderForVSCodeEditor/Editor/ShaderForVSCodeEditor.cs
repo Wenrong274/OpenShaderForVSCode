@@ -4,7 +4,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-public class OpenShaderForVSCodeEditor
+public class ShaderForVSCodeEditor
 {
     [UnityEditor.Callbacks.OnOpenAsset(0)]
     public static bool CallbackShader(int instanceID, int line)
